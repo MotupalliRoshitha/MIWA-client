@@ -21,7 +21,7 @@ export default function Login({ setUser, setIsLoggedin }) {
       password: data.get("password"),
     });
 
-    const res = await fetch("http://localhost:3001/api/v1/signin", {
+    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/signin`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function Login({ setUser, setIsLoggedin }) {
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const res = await fetch("http://localhost:3001/api/v1/signup", {
+    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
