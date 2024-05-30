@@ -29,8 +29,8 @@ const App = () => {
      <BrowserRouter>
       <Navbar userName = {userName} isDarkMode = {isDarkMode} setIsDarkMode = {(val) => setIsDarkMode(val)} logout = {() => {setUser(null); setisLoggedin(false) }} />
       <Routes>
-      <Route path='/' element={<Home />}  />
-      <Route path='/profile' element={<Profile />}  />
+      <Route path='/' element={<Home user={user} />}  />
+      <Route path='/profile' element={<Profile user = {user}/>}  />
       <Route path='/watchlist' element={<WatchList />}  />
       </Routes>
      </BrowserRouter> 

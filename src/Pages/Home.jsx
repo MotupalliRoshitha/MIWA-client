@@ -1,10 +1,34 @@
 import { Box, Paper, TextField, useMediaQuery } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import MovieCard from "../Components/MovieCard";
 
-const Home = () => {
+const Home = ({user}) => {
 
   const [searchItems, setFirst] = useState([])
+  const [list, setList] = useState([])
+  
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const resp = await fetch("http://localhost:3001/api/v1/watchlist", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        });
+        if (resp.ok) {
+          const data = await resp.json();
+          data.result && setList(
+            data.result.map(
+              (item) => item.name)
+            )
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getData();
+  }, [user]);
+
 
   const getResults = async (search) => {
     try {
@@ -28,7 +52,6 @@ const Home = () => {
 
   const isNonMobile = useMediaQuery('(min-width:600px)')
 
-
   return (
       <Paper>
         <Box height="100vh" width="100vw" display="flex" alignItems="center"  flexDirection="column" paddingTop="125px" >
@@ -47,7 +70,7 @@ const Home = () => {
             {
               searchItems.map(
                 (item) => {
-                  return <MovieCard image={item.Poster} title={item.imdbID} head={item.Title} id={item.imdbID} />
+                  return <MovieCard image={item.Poster} title={item.imdbID} head={item.Title} id={item.imdbID} movieList = {list} />
                 }
               )
             }
