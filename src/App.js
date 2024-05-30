@@ -1,5 +1,5 @@
 import Login from './Pages/Login'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Home from './Pages/Home';
 import Navbar from './Components/Navbar'
 import { ThemeProvider, createTheme } from '@mui/material';
@@ -18,6 +18,22 @@ const App = () => {
       mode: theme,
     },
   });
+
+  useEffect(
+    () => {
+      const cuser = JSON.parse(localStorage.getItem("user"))
+      console.log("cuser", cuser);
+      setUser(cuser)
+      cuser !== null && setisLoggedin(true)
+
+    }, []
+  )
+
+  useEffect(
+    () => {
+    user !== null && localStorage.setItem("user", JSON.stringify(user))
+    }, [user]
+  )
   return (
     <div>
       <ThemeProvider theme={  darkTheme}>
@@ -27,11 +43,11 @@ const App = () => {
         </>
       ) : (
      <BrowserRouter>
-      <Navbar userName = {userName} isDarkMode = {isDarkMode} setIsDarkMode = {(val) => setIsDarkMode(val)} logout = {() => {setUser(null); setisLoggedin(false) }} />
+      <Navbar userName = {userName} isDarkMode = {isDarkMode} setIsDarkMode = {(val) => setIsDarkMode(val)} logout = {() => {setUser(null); setisLoggedin(false); localStorage.setItem("user", null) }} />
       <Routes>
       <Route path='/' element={<Home user={user} />}  />
       <Route path='/profile' element={<Profile user = {user}/>}  />
-      <Route path='/watchlist' element={<WatchList />}  />
+      <Route path='/watchlist/:listId' element={<WatchList user={user} />}  />
       </Routes>
      </BrowserRouter> 
       )}

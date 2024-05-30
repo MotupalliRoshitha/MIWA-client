@@ -1,4 +1,4 @@
-import { Box, Button, List, Paper, TextField, useMediaQuery } from "@mui/material";
+import { Box, Paper, TextField, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ListHolder from "../Components/List";
 
@@ -72,9 +72,6 @@ const Profile = ({ user }) => {
     }
   }
 
-  const deleteList = (id) => {
-
-  }
 
 console.log(list);
   return (

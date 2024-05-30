@@ -17,10 +17,7 @@ const Home = ({user}) => {
         });
         if (resp.ok) {
           const data = await resp.json();
-          data.result && setList(
-            data.result.map(
-              (item) => item.name)
-            )
+          data.result && setList(data.result )
         }
       } catch (e) {
         console.log(e);
@@ -50,6 +47,27 @@ const Home = ({user}) => {
       getResults(e.target.value)
   }
 
+  const addMovie = async (listId,movieId) => {
+    if (listId === null) return
+
+    try {
+      const resp = await fetch(
+        `http://localhost:3001/api/v1/watchlist/${listId}/${movieId}`, {
+           headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+          method: "PUT"
+       }
+      )
+      if (resp.ok) {
+        alert('movie added to playlist')
+      }
+    } catch (e) {
+      console.log(e);
+    }
+
+  }
+
   const isNonMobile = useMediaQuery('(min-width:600px)')
 
   return (
@@ -70,7 +88,7 @@ const Home = ({user}) => {
             {
               searchItems.map(
                 (item) => {
-                  return <MovieCard image={item.Poster} title={item.imdbID} head={item.Title} id={item.imdbID} movieList = {list} />
+                  return <MovieCard image={item.Poster} title={item.imdbID} head={item.Title} id={item.imdbID} movieList = {list} addMovie= {(listId) => addMovie(listId,item.imdbID)} />
                 }
               )
             }

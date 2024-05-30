@@ -9,12 +9,13 @@ import {
   Select,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 
-const MovieCard = ({ image, title, head, movieList }) => {
+const MovieCard = ({ image, title, head, movieList, addMovie }) => {
+  const [list,setList] = useState(null)
+
   if (image === undefined || image === "" || image === "N/A")
-    image =
-      "https://as2.ftcdn.net/v2/jpg/02/12/52/91/1000_F_212529193_YRhcQCaJB9ugv5dFzqK25Uo9Ivm7B9Ca.jpg";
+    image = "https://as2.ftcdn.net/v2/jpg/02/12/52/91/1000_F_212529193_YRhcQCaJB9ugv5dFzqK25Uo9Ivm7B9Ca.jpg";
   return (
     <Card sx={{ width: 345, margin: "15px" }}>
       <CardMedia
@@ -37,12 +38,12 @@ const MovieCard = ({ image, title, head, movieList }) => {
           flexDirection="row"
           width="100%"
         >
-          <Select fullWidth >
+          <Select fullWidth onChange={(e) => setList(e.target.value)}  >
             {movieList.map((item) => (
-              <MenuItem value={item}>{item}</MenuItem>
+              <MenuItem value={item}>{item.name}</MenuItem>
             ))}
           </Select>
-          <Button size="small"> Add to Playlist </Button>
+          <Button size="small" onClick={(e) => list && addMovie(list._id)}  > Add to Playlist </Button>
         </Box>
       </CardActions>
     </Card>
