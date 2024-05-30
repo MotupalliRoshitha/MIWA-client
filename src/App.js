@@ -3,6 +3,9 @@ import { useState } from 'react';
 import Home from './Pages/Home';
 import Navbar from './Components/Navbar'
 import { ThemeProvider, createTheme } from '@mui/material';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Profile from './Pages/Profile';
+import WatchList from './Pages/WatchList';
 const App = () => {
 
   const [isLoggedin, setisLoggedin] = useState(false)
@@ -18,11 +21,19 @@ const App = () => {
   return (
     <div>
       <ThemeProvider theme={  darkTheme}>
-      <Navbar userName = {userName} isDarkMode = {isDarkMode} setIsDarkMode = {(val) => setIsDarkMode(val)} logout = {() => {setUser(null); setisLoggedin(false) }} />
       {!isLoggedin ? (
+        <>
         <Login setIsLoggedin={(val) => setisLoggedin(val)} setUser={(val) => setUser(val)} />
+        </>
       ) : (
-        <Home />
+     <BrowserRouter>
+      <Navbar userName = {userName} isDarkMode = {isDarkMode} setIsDarkMode = {(val) => setIsDarkMode(val)} logout = {() => {setUser(null); setisLoggedin(false) }} />
+      <Routes>
+      <Route path='/' element={<Home />}  />
+      <Route path='/profile' element={<Profile />}  />
+      <Route path='/watchlist' element={<WatchList />}  />
+      </Routes>
+     </BrowserRouter> 
       )}
       </ThemeProvider>
     </div>

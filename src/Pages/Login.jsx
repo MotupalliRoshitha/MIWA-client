@@ -16,46 +16,51 @@ export default function Login({ setUser, setIsLoggedin }) {
   const handleSignInSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    try {
+      const res = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/v1/signin`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: data.get("email"),
+            password: data.get("password"),
+          }),
+        }
+      );
 
-    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/signin`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: data.get("email"),
-        password: data.get("password"),
-      }),
-    });
-
-    if (res.ok) {
-      const user = await res.json();
-      setUser(user);
-      setIsLoggedin(true);
+      if (res.ok) {
+        const user = await res.json();
+        setUser(user);
+        setIsLoggedin(true);
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
   const handleSignUpSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/api/v1/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: data.get("email"),
-        password: data.get("password"),
-        firstName: data.get("firstName"),
-        lastName: data.get("lastName"),
-      }),
-    });
-
     try {
+      const res = await fetch(
+        `${process.env.REACT_APP_SERVER_URL}/api/v1/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: data.get("email"),
+            password: data.get("password"),
+            firstName: data.get("firstName"),
+            lastName: data.get("lastName"),
+          }),
+        }
+      );
+
       if (res.ok) {
         const user = await res.json();
         setUser(user);
