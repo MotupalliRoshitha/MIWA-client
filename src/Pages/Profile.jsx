@@ -1,10 +1,16 @@
 import { Box, Paper, TextField, useMediaQuery } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import ListHolder from "../Components/List";
+import { useNavigate } from "react-router-dom";
 
 const Profile = ({ user }) => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const [list, setList] = useState([])
+  const navigate = useNavigate()
+
+  const toList = (listId) => {
+    navigate(`/watchlist/${listId}`)
+  }
 
   useEffect(() => {
     const getData = async () => {
@@ -72,8 +78,6 @@ const Profile = ({ user }) => {
     }
   }
 
-
-console.log(list);
   return (
     <>
       <Paper>
@@ -102,7 +106,7 @@ console.log(list);
             <Box display='flex' flexDirection='column' margin='50px' width='100%' gap='24px' >
               {
                 list.map(
-                  (item) => <ListHolder key = {item.id} name={item.name} isPublic = {item.isPublic} changeisPublic = {(e) => changeisPublic(e,"PUT")} id={item._id} deleteList = {(e) => changeisPublic(e,"DELETE")}/>
+                  (item) => <ListHolder key = {item.id} name={item.name} isPublic = {item.isPublic} changeisPublic = {(e) => changeisPublic(e,"PUT")} id={item._id} deleteList = {(e) => changeisPublic(e,"DELETE")} onClick = {(id) => toList(id) }  />
                 )
               }
             </Box>

@@ -88,7 +88,7 @@ const Home = ({user}) => {
             {
               searchItems.map(
                 (item) => {
-                  return <MovieCard image={item.Poster} title={item.imdbID} head={item.Title} id={item.imdbID} movieList = {list} addMovie= {(listId) => addMovie(listId,item.imdbID)} />
+                  return <MovieCard image={item.Poster} key={item.imdbID} title={item.imdbID} head={item.Title} id={item.imdbID} movieList = {list} addMovie= {(listId) => addMovie(listId,item.imdbID)} />
                 }
               )
             }
