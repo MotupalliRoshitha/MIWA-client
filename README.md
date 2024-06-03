@@ -1,6 +1,46 @@
-# Getting Started with Create React App
+# Movie Library Web Application Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
+
+This repository contains the frontend code for the Movie Library Web Application. The frontend is built using React and Material-UI for the user interface components. The application allows users to search for movies, view details, and manage their watchlists.
+
+## Features
+
+1. **User Authentication**: Users can sign up and sign in.
+2. **Movie Search**: Users can search for movies and view their details.
+3. **Watchlists**: Users can create and manage watchlists of movies. Watchlists can be public or private.
+4. **Home Screen**: Displays the user's watchlists and allows for interaction with movies.
+
+## Working Link
+([http://localhost:3000](https://miwa-client.onrender.com))
+
+## Prerequisites
+
+- Node.js
+- npm (Node Package Manager)
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd movie-library-frontend
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+## Running the Application
+
+1. Start the application:
+   ```bash
+   npm start
+   ```
+2. The application will be running on `http://localhost:3000`.
 
 ## Available Scripts
 
@@ -27,44 +67,64 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc.) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Project Structure
 
-## Learn More
+```
+.
+├── public
+│   ├── index.html
+│   └── ...
+├── src
+│   ├── components
+│   │   ├── Auth
+│   │   │   ├── SignIn.js
+│   │   │   ├── SignUp.js
+│   │   │   └── ...
+│   │   ├── Movie
+│   │   │   ├── MovieDetail.js
+│   │   │   ├── MovieList.js
+│   │   │   └── ...
+│   │   ├── Watchlist
+│   │   │   ├── WatchlistItem.js
+│   │   │   ├── WatchlistList.js
+│   │   │   └── ...
+│   │   └── ...
+│   ├── App.js
+│   ├── index.js
+│   └── ...
+└── package.json
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Dependencies
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `@emotion/react`, `@emotion/styled`: For styling with Emotion.
+- `@fontsource/roboto`: For Roboto font integration.
+- `@mui/material`, `@mui/icons-material`: For Material-UI components and icons.
+- `react`, `react-dom`: For building the user interface.
+- `react-router-dom`: For routing.
+- `react-scripts`: For Create React App scripts.
+- `web-vitals`: For measuring performance.
 
-### Code Splitting
+## Contributing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/new-feature`).
+3. Commit your changes (`git commit -am 'Add some feature'`).
+4. Push to the branch (`git push origin feature/new-feature`).
+5. Create a new Pull Request.
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+This project is licensed under the MIT License.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This README provides a comprehensive overview of the Movie Library Web Application frontend, including its features, installation steps, available scripts, project structure, and more. It should help you get started quickly and understand the project's organization and capabilities.
