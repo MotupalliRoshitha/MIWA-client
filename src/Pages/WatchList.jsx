@@ -86,7 +86,7 @@ const WatchList = ({ user }) => {
               }
             </Box>
           ) : (
-            <Typography variant="h4">No Moviks</Typography>
+            <Typography variant="h4">No Movies</Typography>
           )}
         </Box>
       </Box>
